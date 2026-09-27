@@ -3,12 +3,12 @@
 .env.*
 !.env.example
 
-# Local references, archived work, and generated results
+# Local references, archived work, & generated results
 /slides/
 /archive/
 /results/
 
-# Python and operating-system files
+# Python & OS files
 .venv/
 __pycache__/
 *.py[cod]
