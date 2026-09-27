@@ -1,0 +1,15 @@
+# Credentials
+.env
+.env.*
+!.env.example
+
+# Local references, archived work, and generated results
+/slides/
+/archive/
+/results/
+
+# Python and operating-system files
+.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
