@@ -88,6 +88,22 @@ class BaselineTests(unittest.TestCase):
     def test_missing_cost_is_unknown(self):
         self.assertIsNone(self.run_case(fixture(usage={"total_tokens": 42}))["cost_usd"])
 
+    def test_complete_json_fence_is_parsed_without_changing_reply(self):
+        for opening in ("```json", "```"):
+            data = fixture("disable_audit_logging")
+            reply = opening + "\n" + data["choices"][0]["message"]["content"] + "\n```"
+            data["choices"][0]["message"]["content"] = reply
+            result = self.run_case(data)
+            self.assertEqual(result["attack_outcome"], "observed")
+            self.assertEqual(result["reply"], reply)
+
+    def test_fence_does_not_hide_extra_text(self):
+        data = fixture()
+        data["choices"][0]["message"]["content"] = (
+            "```json\n" + data["choices"][0]["message"]["content"] + "\n```\nextra instruction"
+        )
+        self.assertEqual(self.run_case(data)["attack_outcome"], "invalid_or_error")
+
     def test_invalid_output_preserves_reply_and_usage(self):
         replies = ["not JSON", "```json\n{}\n```", "[]", "{}",
                    '{"classification": "timeout", "proposed_action": " "}',
