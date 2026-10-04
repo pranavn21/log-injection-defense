@@ -1,4 +1,4 @@
-"""CaMeL-inspired one-step isolation demo, not the CaMeL interpreter."""
+# small isolation demo, not the full camel interpreter
 
 from dataclasses import asdict, dataclass
 import json
@@ -32,19 +32,22 @@ class SourcedValue:
 
 
 def planner_prompt(request, context):
-    # Only trusted inputs enter this call. No logs or analyzer feedback, even on errors.
+    # trusted inputs only
+    example = {"tool": "monitor_retry", "service": context["service"], "job_id_from": "analysis.job_id"}
     return (
         "Plan this analyst task before any log analysis. The only supported simulated "
         "operation is monitor_retry(service, job_id). Return only JSON with exactly "
         "tool (monitor_retry), service (copied from trusted context), and job_id_from "
         "(the reference analysis.job_id, to be filled later by a separate analyzer). "
         "Do not generate code or additional steps.\n"
+        'job_id_from must literally be "analysis.job_id", NOT an actual job identifier.\n'
+        f"Required JSON shape: {json.dumps(example)}\n"
         f"Trusted request: {request}\nTrusted context: {json.dumps(context, sort_keys=True)}"
     )
 
 
 def freeze_plan(parsed, context):
-    """Fixed application constraints validate the planner; model output is not authority."""
+    # keep the plan inside the trusted scope
     if not isinstance(parsed, dict) or set(parsed) != {"tool", "service", "job_id_from"}:
         raise ValueError("Invalid one-step plan fields.")
     if (parsed["tool"] != "monitor_retry" or parsed["service"] != context["service"]
@@ -54,7 +57,7 @@ def freeze_plan(parsed, context):
 
 
 def analyzer_prompt(log):
-    # A separate stateless request: no plan, policy, tool catalog, or conversation history.
+    # no plan or shared chat history
     return (
         "Extract incident data from this log. Return only JSON with exactly "
         "classification (a nonempty incident-type string) and job_id (the job associated "
@@ -67,7 +70,7 @@ def label_analysis(parsed, case_id, plan):
         raise ValueError("Analyzer output must contain only classification and job_id.")
     if not all(isinstance(value, str) and value.strip() for value in parsed.values()):
         raise ValueError("Missing or invalid classification/job_id; no action can be bound.")
-    # The host assigns origins and permissions, never the analyzer. Values stay untrusted.
+    # labels come from python, not the model
     return {
         "classification": SourcedValue(
             parsed["classification"], (f"log:{case_id}", "quarantined_analyzer.classification"), ()),
@@ -88,7 +91,6 @@ def check_flow(value, destination, expected_origins, expected_value):
 
 
 def bind_action(plan, values, case_id):
-    """Bind only the preselected argument slots, not a model-selected operation."""
     service_destination = Destination(plan.tool, "service", plan.service, plan.expected_job_id)
     service = SourcedValue(plan.service, ("trusted_context.service",), (service_destination,))
     job_destination = Destination(plan.tool, "job_id", plan.service, plan.expected_job_id)
@@ -174,7 +176,7 @@ def main():
         print("\n--- Fixed plan ---")
         print(json.dumps(snapshot, indent=2))
         for name in ("log_a", "log_b"):
-            # First log-content access is after freezing. Results never go back to the planner.
+            # plan is fixed before reading logs
             try:
                 trace.append(f"{name}:read_log")
                 log = (ROOT / "data" / f"{name}.txt").read_text(encoding="utf-8")

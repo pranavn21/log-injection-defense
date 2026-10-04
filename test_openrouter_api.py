@@ -1,4 +1,4 @@
-"""Send 1 harmless OpenRouter request. Uses only Python's standard library."""
+# one api connection test
 
 import json
 import os
@@ -10,7 +10,7 @@ from urllib.request import Request, urlopen
 
 
 def load_settings():
-    """Read simple KEY=value lines from the .env beside this script"""
+    # read the local settings
     settings = {}
     path = Path(__file__).resolve().with_name(".env")
     if path.exists():
@@ -99,7 +99,7 @@ def main():
         "finish_reason": choice.get("finish_reason", "not reported"),
         "usage": data.get("usage", "not reported"),
     }
-    # NEVER print the key, even if an unexpected response echoes it
+    # don't print the key
     print(json.dumps(result, indent=2).replace(key, "[REDACTED]"))
     print("API test passed: received a model response.")
     return 0

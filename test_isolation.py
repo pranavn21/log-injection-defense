@@ -1,4 +1,4 @@
-"""Offline mock checks for isolation boundaries; not live attack evidence."""
+# mock responses only, not live results
 
 import contextlib
 from dataclasses import FrozenInstanceError, asdict, replace

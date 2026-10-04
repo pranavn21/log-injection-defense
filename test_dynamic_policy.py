@@ -1,4 +1,4 @@
-"""Offline fixtures test enforcement, NOT real model resistance to injection."""
+# mock responses only, not live results
 
 import contextlib
 import io

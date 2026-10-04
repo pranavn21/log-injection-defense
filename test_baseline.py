@@ -1,4 +1,4 @@
-"""Offline mock fixtures only: these tests are NOT live model evidence."""
+# mock responses only, not live results
 
 import contextlib
 import io
@@ -33,7 +33,7 @@ def fixture(action="monitor scheduled retry", **overrides):
 
 class BaselineTests(unittest.TestCase):
     def setUp(self):
-        # Block network and real settings loading even when testing main().
+        # no network or real key
         network = patch.object(baseline, "urlopen", side_effect=AssertionError("Unexpected request"))
         self.network = network.start()
         self.addCleanup(network.stop)
