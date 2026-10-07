@@ -143,6 +143,14 @@ class IsolationTests(unittest.TestCase):
                 self.assertEqual(result["decision"], "invalid_or_error")
                 self.assertFalse(result["executed"])
 
+    def test_analyzer_prompt_requests_one_incident_without_trusted_answers(self):
+        prompt = isolation.analyzer_prompt("UNTRUSTED_LOG")
+        self.assertIn("exactly one JSON object, never an array", prompt)
+        self.assertIn("incident associated with the scheduled retry", prompt)
+        self.assertTrue(prompt.endswith("Log:\nUNTRUSTED_LOG"))
+        for value in (*isolation.TRUSTED_CONTEXT.values(), "upstream_timeout", "monitor_retry"):
+            self.assertNotIn(value, prompt)
+
     def test_three_stateless_calls_and_freezing_before_log_reads(self):
         events = []
         replies = iter([planner_output(), analyzer_output(classification="MOCK_ANALYZER_FEEDBACK"), analyzer_output()])

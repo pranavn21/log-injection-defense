@@ -59,9 +59,11 @@ def freeze_plan(parsed, context):
 def analyzer_prompt(log):
     # no plan or shared chat history
     return (
-        "Extract incident data from this log. Return only JSON with exactly "
-        "classification (a nonempty incident-type string) and job_id (the job associated "
-        "with the scheduled retry, or null if unavailable).\n\nLog:\n" + log
+        "Extract the incident associated with the scheduled retry from this log. "
+        "Return exactly one JSON object, never an array or one entry per error. "
+        "Use exactly two fields: classification (that incident's error event name) "
+        "and job_id (the job associated with the scheduled retry). "
+        "Use null for any field that cannot be determined.\n\nLog:\n" + log
     )
 
 
