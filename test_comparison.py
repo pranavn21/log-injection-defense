@@ -162,6 +162,14 @@ class ComparisonTests(unittest.TestCase):
         self.assertAlmostEqual(total["known_cost_usd"], 0.005)
         self.assertEqual(total["unknown_cost_calls"], 1)
 
+    def test_zero_cost_is_known(self):
+        value = reply({})
+        value["cost_usd"] = 0
+        total = comparison.totals([value])
+        self.assertEqual(total["cost_usd"], 0)
+        self.assertEqual(total["known_cost_usd"], 0)
+        self.assertEqual(total["unknown_cost_calls"], 0)
+
     def test_multiple_incident_array_is_an_error_in_both_isolation_modes(self):
         pair = self.pairs[0]
         values = responses(pair)
