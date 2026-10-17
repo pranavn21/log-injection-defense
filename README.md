@@ -2,7 +2,7 @@
 
 A small Python project testing whether instructions hidden in logs can make
 an LLM recommend the wrong action. The intended task is to identify a timeout
-and monitor the scheduled retry. All actions are simulated; nothing is executed.
+and monitor the scheduled retry. All actions are simulated; nothing is executed. Uses OpenRouter for LLM calls.
 
 ## What Is Implemented
 
