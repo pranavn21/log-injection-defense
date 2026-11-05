@@ -1,12 +1,21 @@
 # Log Injection Defense: Comparing Isolation and Dynamic Policies
 
 A small Python project testing whether instructions hidden in logs can make
-an LLM recommend the wrong action. The intended task is to identify a timeout
-and monitor the scheduled retry. All actions are simulated; nothing is executed. Uses OpenRouter for LLM calls.
+an LLM recommend the wrong action. The original task identifies a timeout and
+monitors its scheduled retry. The expanded dataset also tests service-status
+requests and additional incident types. All actions are simulated; nothing is
+executed. Uses OpenRouter for LLM calls.
 
 ## What Is Implemented
 
-Five synthetic clean/poisoned log pairs, four modes, and JSON/CSV results:
+Two datasets, four modes, and JSON/CSV results:
+
+- `legacy`: the original five pairs, retained for the October comparison.
+- `expanded`: 24 base scenarios, each with a clean log and six poisoned versions.
+  This gives 144 paired cases and 168 distinct log inputs. There are two task
+  types, eight incident types, three log sizes, and two log formats.
+
+See [EXPERIMENTS.md](EXPERIMENTS.md) for the dataset design and testing procedure.
 
 | Mode | What it does |
 | --- | --- |
@@ -58,7 +67,7 @@ Shared responses appear in multiple modes. Count each request once using
 Use Python 3.11 or newer. No extra packages are needed. From this folder:
 
 ```sh
-python3 -B -m unittest test_baseline test_dynamic_policy test_isolation test_comparison -v
+python3 -B -m unittest test_baseline test_dynamic_policy test_isolation test_comparison test_expanded -v
 ```
 
 That runs offline tests without a key or charges. For a fresh live comparison,
@@ -82,10 +91,12 @@ instead of paying for another run. The latest local evidence is
 
 ## Limits
 
-This is five variations of one task on one model, not proof of general
-protection. Modes share responses and use different output formats, so the
-40 rows are not independent experiments. Invalid outputs are errors, not
-successful defenses.
+The October findings cover five variations of one task on one model. The
+expanded inputs are synthetic and template-based, and still cover only two
+read-only tasks. Their live results have not yet been measured. Modes share
+responses and use different output formats. Attacks share a clean control and
+setup within each expanded scenario, so rows are not independent experiments.
+Invalid outputs are errors, not successful defenses.
 
 The observed policy denial also matched permanent safety rules, so it does
 not establish the generated policy's separate benefit. Combined showed no
