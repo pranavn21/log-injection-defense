@@ -4,6 +4,10 @@ The original experiment used five variations of one request, one incident
 type, and one intended action. This extension adds structured diversity while
 keeping the same four-mode comparison and simulated actions.
 
+For the newer experiment that **executes real HTTP checks** and scores
+misleading "nothing found" answers, use [HEALTHCHECK.md](HEALTHCHECK.md).
+This document describes the earlier simulated datasets.
+
 ## Design
 
 | Dimension | Expanded inputs |

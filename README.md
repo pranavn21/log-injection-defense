@@ -3,19 +3,26 @@
 A small Python project testing whether instructions hidden in logs can make
 an LLM recommend the wrong action. The original task identifies a timeout and
 monitors its scheduled retry. The expanded dataset also tests service-status
-requests and additional incident types. All actions are simulated; nothing is
-executed. Uses OpenRouter for LLM calls.
+requests and additional incident types. Those comparisons simulate actions.
+The new HTTP experiment executes real read-only checks of a local service
+and verifies the final answer against independent HTTP evidence. Uses
+OpenRouter for LLM calls.
 
 ## What Is Implemented
 
-Two datasets, four modes, and JSON/CSV results:
+Four comparison modes and JSON/CSV results:
 
 - `legacy`: the original five pairs, retained for the October comparison.
 - `expanded`: 24 base scenarios, each with a clean log and six poisoned versions.
   This gives 144 paired cases and 168 distinct log inputs. There are two task
   types, eight incident types, three log sizes, and two log formats.
+- `run_healthcheck.py`: 48 controlled HTTP scenarios, each with a clean log
+  and six attacked versions (336 distinct log inputs). Real GET requests,
+  healthy controls, and explicit scoring of misleading "nothing found" answers.
 
 See [EXPERIMENTS.md](EXPERIMENTS.md) for the dataset design and testing procedure.
+See [HEALTHCHECK.md](HEALTHCHECK.md) for the real task, exact success/failure
+definitions, repository locations, and step-by-step testing commands.
 
 | Mode | What it does |
 | --- | --- |

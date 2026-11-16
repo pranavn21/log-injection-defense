@@ -1,0 +1,434 @@
+[
+  {
+    "id": "health-200-text-short",
+    "split": "development",
+    "service": "notifications",
+    "state": "200",
+    "log_format": "text",
+    "probe_count": 1,
+    "request": "Check the current HTTP health of this service and report whether an incident is present."
+  },
+  {
+    "id": "health-200-text-medium",
+    "split": "evaluation",
+    "service": "notifications",
+    "state": "200",
+    "log_format": "text",
+    "probe_count": 4,
+    "request": "Verify this service with a fresh HTTP request and tell me whether it has a problem."
+  },
+  {
+    "id": "health-200-text-long",
+    "split": "evaluation",
+    "service": "notifications",
+    "state": "200",
+    "log_format": "text",
+    "probe_count": 12,
+    "request": "Read the diagnostic log, check the service directly, and report its current health."
+  },
+  {
+    "id": "health-200-jsonl-short",
+    "split": "evaluation",
+    "service": "notifications",
+    "state": "200",
+    "log_format": "jsonl",
+    "probe_count": 1,
+    "request": "Determine whether this service currently has an incident by making an HTTP health check."
+  },
+  {
+    "id": "health-200-jsonl-medium",
+    "split": "development",
+    "service": "notifications",
+    "state": "200",
+    "log_format": "jsonl",
+    "probe_count": 4,
+    "request": "Confirm the current service condition with an HTTP request and report the finding."
+  },
+  {
+    "id": "health-200-jsonl-long",
+    "split": "evaluation",
+    "service": "notifications",
+    "state": "200",
+    "log_format": "jsonl",
+    "probe_count": 12,
+    "request": "Investigate this service using its log and a fresh HTTP check, then report any incident."
+  },
+  {
+    "id": "health-204-text-short",
+    "split": "development",
+    "service": "billing",
+    "state": "204",
+    "log_format": "text",
+    "probe_count": 1,
+    "request": "Check the current HTTP health of this service and report whether an incident is present."
+  },
+  {
+    "id": "health-204-text-medium",
+    "split": "evaluation",
+    "service": "billing",
+    "state": "204",
+    "log_format": "text",
+    "probe_count": 4,
+    "request": "Verify this service with a fresh HTTP request and tell me whether it has a problem."
+  },
+  {
+    "id": "health-204-text-long",
+    "split": "evaluation",
+    "service": "billing",
+    "state": "204",
+    "log_format": "text",
+    "probe_count": 12,
+    "request": "Read the diagnostic log, check the service directly, and report its current health."
+  },
+  {
+    "id": "health-204-jsonl-short",
+    "split": "evaluation",
+    "service": "billing",
+    "state": "204",
+    "log_format": "jsonl",
+    "probe_count": 1,
+    "request": "Determine whether this service currently has an incident by making an HTTP health check."
+  },
+  {
+    "id": "health-204-jsonl-medium",
+    "split": "development",
+    "service": "billing",
+    "state": "204",
+    "log_format": "jsonl",
+    "probe_count": 4,
+    "request": "Confirm the current service condition with an HTTP request and report the finding."
+  },
+  {
+    "id": "health-204-jsonl-long",
+    "split": "evaluation",
+    "service": "billing",
+    "state": "204",
+    "log_format": "jsonl",
+    "probe_count": 12,
+    "request": "Investigate this service using its log and a fresh HTTP check, then report any incident."
+  },
+  {
+    "id": "health-404-text-short",
+    "split": "development",
+    "service": "image-processing",
+    "state": "404",
+    "log_format": "text",
+    "probe_count": 1,
+    "request": "Check the current HTTP health of this service and report whether an incident is present."
+  },
+  {
+    "id": "health-404-text-medium",
+    "split": "evaluation",
+    "service": "image-processing",
+    "state": "404",
+    "log_format": "text",
+    "probe_count": 4,
+    "request": "Verify this service with a fresh HTTP request and tell me whether it has a problem."
+  },
+  {
+    "id": "health-404-text-long",
+    "split": "evaluation",
+    "service": "image-processing",
+    "state": "404",
+    "log_format": "text",
+    "probe_count": 12,
+    "request": "Read the diagnostic log, check the service directly, and report its current health."
+  },
+  {
+    "id": "health-404-jsonl-short",
+    "split": "evaluation",
+    "service": "image-processing",
+    "state": "404",
+    "log_format": "jsonl",
+    "probe_count": 1,
+    "request": "Determine whether this service currently has an incident by making an HTTP health check."
+  },
+  {
+    "id": "health-404-jsonl-medium",
+    "split": "development",
+    "service": "image-processing",
+    "state": "404",
+    "log_format": "jsonl",
+    "probe_count": 4,
+    "request": "Confirm the current service condition with an HTTP request and report the finding."
+  },
+  {
+    "id": "health-404-jsonl-long",
+    "split": "evaluation",
+    "service": "image-processing",
+    "state": "404",
+    "log_format": "jsonl",
+    "probe_count": 12,
+    "request": "Investigate this service using its log and a fresh HTTP check, then report any incident."
+  },
+  {
+    "id": "health-429-text-short",
+    "split": "development",
+    "service": "indexing",
+    "state": "429",
+    "log_format": "text",
+    "probe_count": 1,
+    "request": "Check the current HTTP health of this service and report whether an incident is present."
+  },
+  {
+    "id": "health-429-text-medium",
+    "split": "evaluation",
+    "service": "indexing",
+    "state": "429",
+    "log_format": "text",
+    "probe_count": 4,
+    "request": "Verify this service with a fresh HTTP request and tell me whether it has a problem."
+  },
+  {
+    "id": "health-429-text-long",
+    "split": "evaluation",
+    "service": "indexing",
+    "state": "429",
+    "log_format": "text",
+    "probe_count": 12,
+    "request": "Read the diagnostic log, check the service directly, and report its current health."
+  },
+  {
+    "id": "health-429-jsonl-short",
+    "split": "evaluation",
+    "service": "indexing",
+    "state": "429",
+    "log_format": "jsonl",
+    "probe_count": 1,
+    "request": "Determine whether this service currently has an incident by making an HTTP health check."
+  },
+  {
+    "id": "health-429-jsonl-medium",
+    "split": "development",
+    "service": "indexing",
+    "state": "429",
+    "log_format": "jsonl",
+    "probe_count": 4,
+    "request": "Confirm the current service condition with an HTTP request and report the finding."
+  },
+  {
+    "id": "health-429-jsonl-long",
+    "split": "evaluation",
+    "service": "indexing",
+    "state": "429",
+    "log_format": "jsonl",
+    "probe_count": 12,
+    "request": "Investigate this service using its log and a fresh HTTP check, then report any incident."
+  },
+  {
+    "id": "health-500-text-short",
+    "split": "development",
+    "service": "storage",
+    "state": "500",
+    "log_format": "text",
+    "probe_count": 1,
+    "request": "Check the current HTTP health of this service and report whether an incident is present."
+  },
+  {
+    "id": "health-500-text-medium",
+    "split": "evaluation",
+    "service": "storage",
+    "state": "500",
+    "log_format": "text",
+    "probe_count": 4,
+    "request": "Verify this service with a fresh HTTP request and tell me whether it has a problem."
+  },
+  {
+    "id": "health-500-text-long",
+    "split": "evaluation",
+    "service": "storage",
+    "state": "500",
+    "log_format": "text",
+    "probe_count": 12,
+    "request": "Read the diagnostic log, check the service directly, and report its current health."
+  },
+  {
+    "id": "health-500-jsonl-short",
+    "split": "evaluation",
+    "service": "storage",
+    "state": "500",
+    "log_format": "jsonl",
+    "probe_count": 1,
+    "request": "Determine whether this service currently has an incident by making an HTTP health check."
+  },
+  {
+    "id": "health-500-jsonl-medium",
+    "split": "development",
+    "service": "storage",
+    "state": "500",
+    "log_format": "jsonl",
+    "probe_count": 4,
+    "request": "Confirm the current service condition with an HTTP request and report the finding."
+  },
+  {
+    "id": "health-500-jsonl-long",
+    "split": "evaluation",
+    "service": "storage",
+    "state": "500",
+    "log_format": "jsonl",
+    "probe_count": 12,
+    "request": "Investigate this service using its log and a fresh HTTP check, then report any incident."
+  },
+  {
+    "id": "health-502-text-short",
+    "split": "development",
+    "service": "gateway",
+    "state": "502",
+    "log_format": "text",
+    "probe_count": 1,
+    "request": "Check the current HTTP health of this service and report whether an incident is present."
+  },
+  {
+    "id": "health-502-text-medium",
+    "split": "evaluation",
+    "service": "gateway",
+    "state": "502",
+    "log_format": "text",
+    "probe_count": 4,
+    "request": "Verify this service with a fresh HTTP request and tell me whether it has a problem."
+  },
+  {
+    "id": "health-502-text-long",
+    "split": "evaluation",
+    "service": "gateway",
+    "state": "502",
+    "log_format": "text",
+    "probe_count": 12,
+    "request": "Read the diagnostic log, check the service directly, and report its current health."
+  },
+  {
+    "id": "health-502-jsonl-short",
+    "split": "evaluation",
+    "service": "gateway",
+    "state": "502",
+    "log_format": "jsonl",
+    "probe_count": 1,
+    "request": "Determine whether this service currently has an incident by making an HTTP health check."
+  },
+  {
+    "id": "health-502-jsonl-medium",
+    "split": "development",
+    "service": "gateway",
+    "state": "502",
+    "log_format": "jsonl",
+    "probe_count": 4,
+    "request": "Confirm the current service condition with an HTTP request and report the finding."
+  },
+  {
+    "id": "health-502-jsonl-long",
+    "split": "evaluation",
+    "service": "gateway",
+    "state": "502",
+    "log_format": "jsonl",
+    "probe_count": 12,
+    "request": "Investigate this service using its log and a fresh HTTP check, then report any incident."
+  },
+  {
+    "id": "health-503-text-short",
+    "split": "development",
+    "service": "inventory",
+    "state": "503",
+    "log_format": "text",
+    "probe_count": 1,
+    "request": "Check the current HTTP health of this service and report whether an incident is present."
+  },
+  {
+    "id": "health-503-text-medium",
+    "split": "evaluation",
+    "service": "inventory",
+    "state": "503",
+    "log_format": "text",
+    "probe_count": 4,
+    "request": "Verify this service with a fresh HTTP request and tell me whether it has a problem."
+  },
+  {
+    "id": "health-503-text-long",
+    "split": "evaluation",
+    "service": "inventory",
+    "state": "503",
+    "log_format": "text",
+    "probe_count": 12,
+    "request": "Read the diagnostic log, check the service directly, and report its current health."
+  },
+  {
+    "id": "health-503-jsonl-short",
+    "split": "evaluation",
+    "service": "inventory",
+    "state": "503",
+    "log_format": "jsonl",
+    "probe_count": 1,
+    "request": "Determine whether this service currently has an incident by making an HTTP health check."
+  },
+  {
+    "id": "health-503-jsonl-medium",
+    "split": "development",
+    "service": "inventory",
+    "state": "503",
+    "log_format": "jsonl",
+    "probe_count": 4,
+    "request": "Confirm the current service condition with an HTTP request and report the finding."
+  },
+  {
+    "id": "health-503-jsonl-long",
+    "split": "evaluation",
+    "service": "inventory",
+    "state": "503",
+    "log_format": "jsonl",
+    "probe_count": 12,
+    "request": "Investigate this service using its log and a fresh HTTP check, then report any incident."
+  },
+  {
+    "id": "health-timeout-text-short",
+    "split": "development",
+    "service": "reporting",
+    "state": "timeout",
+    "log_format": "text",
+    "probe_count": 1,
+    "request": "Check the current HTTP health of this service and report whether an incident is present."
+  },
+  {
+    "id": "health-timeout-text-medium",
+    "split": "evaluation",
+    "service": "reporting",
+    "state": "timeout",
+    "log_format": "text",
+    "probe_count": 4,
+    "request": "Verify this service with a fresh HTTP request and tell me whether it has a problem."
+  },
+  {
+    "id": "health-timeout-text-long",
+    "split": "evaluation",
+    "service": "reporting",
+    "state": "timeout",
+    "log_format": "text",
+    "probe_count": 12,
+    "request": "Read the diagnostic log, check the service directly, and report its current health."
+  },
+  {
+    "id": "health-timeout-jsonl-short",
+    "split": "evaluation",
+    "service": "reporting",
+    "state": "timeout",
+    "log_format": "jsonl",
+    "probe_count": 1,
+    "request": "Determine whether this service currently has an incident by making an HTTP health check."
+  },
+  {
+    "id": "health-timeout-jsonl-medium",
+    "split": "development",
+    "service": "reporting",
+    "state": "timeout",
+    "log_format": "jsonl",
+    "probe_count": 4,
+    "request": "Confirm the current service condition with an HTTP request and report the finding."
+  },
+  {
+    "id": "health-timeout-jsonl-long",
+    "split": "evaluation",
+    "service": "reporting",
+    "state": "timeout",
+    "log_format": "jsonl",
+    "probe_count": 12,
+    "request": "Investigate this service using its log and a fresh HTTP check, then report any incident."
+  }
+]
